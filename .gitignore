@@ -1,0 +1,7 @@
+/node_modules/
+/dist/
+/.vscode/
+pnpm-lock.yaml
+yarn.lock
+.DS_Store
+.pnpm-debug.log

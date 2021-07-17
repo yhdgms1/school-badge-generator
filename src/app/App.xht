@@ -1,0 +1,53 @@
+<script>
+import Card from "../components/Card.xht"
+import Modal from "../components/Modal.xht"
+import clsx from "clsx"
+import * as styles from "./app.css"
+import * as selectStyle from "../styles/select.css"
+import * as inputStyle from "../styles/input.css"
+import * as buttonStyle from "../styles/button.css"
+import { store } from "../data/data"
+import { createImage } from "../lib/createImage.ts"
+
+const canvas = document.createElement("canvas")
+
+let result = ""
+let isModalOpen = false
+
+const proceedToCreateAnImage = async () => {
+  if (result) URL.revokeObjectURL(result)
+
+  result = await createImage(canvas, JSON.parse(JSON.stringify(store.$)))
+
+  isModalOpen = true
+};
+
+</script>
+
+<Modal @close={isModalOpen = false} isOpen={isModalOpen}>
+    <p>Готово! Скачайте файл, нажав на кнопку ниже:</p>
+    <a href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
+</Modal>
+
+<div class={styles.aside}>
+	<span>Стили</span>
+    <div class={selectStyle.container}>
+        <label for="font-select" class={selectStyle.label}>Выберите шрифт</label>
+        <select :value={store.$.global.font} title="Выберите шрифт" id="font-select" class={selectStyle.select}>
+            <option value="arial">Arial</option>
+            <option value="intro">Intro</option>
+        </select>
+    </div>
+    <div class={inputStyle.container}>
+        <input :value={store.$.global.grade} type="text" class={inputStyle.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
+    </div>
+    <div class={inputStyle.container}>
+        <button @click:proceedToCreateAnImage type="button" class={clsx(buttonStyle.button, buttonStyle.buttonBlue)}>Создать</button>
+    </div>
+</div>
+
+<main class={styles.main}>
+	{#each 8 as i}
+        <Card {i}/>
+    {/each}
+</main>

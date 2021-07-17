@@ -1,0 +1,65 @@
+<script>
+import * as cardStyle from "./card.css"
+import * as selectStyle from "../styles/select.css"
+import * as inputStyle from "../styles/input.css"
+import * as buttonStyle from "../styles/button.css"
+import clsx from "clsx"
+import { store } from "../data/data"
+
+export let i
+
+let born = i === 1
+
+const remove = () => {
+  store.$.people[i - 1] = { name: "", grade: "", gender: "male", style: "default" }
+
+  born = false
+};
+
+</script>
+
+<div class={cardStyle.card}>
+    {#if born}
+        <div class={inputStyle.container}>
+            <input :value={store.$.people[i - 1].name} type="text" class={inputStyle.input} spellcheck="false" placeholder="Введите имя и фамилию">
+        </div>
+
+        {#if !store.$.global.grade}
+            <div class={inputStyle.container}>
+                <input :value={store.$.people[i - 1].grade} type="text" class={inputStyle.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
+            </div>
+        {/if}
+
+        <div class={selectStyle.container}>
+            <label for="gender-select-{i}" class={selectStyle.label}>Выберите пол</label>
+            <select :value={store.$.people[i - 1].gender} title="Выберите пол" id="gender-select-{i}" class={selectStyle.select}>
+                <option value="male">Мужчина</option>
+                <option value="female">Женщина</option>
+            </select>
+        </div>
+        <div class={selectStyle.container}>
+            <label for="style-select-{i}" class={selectStyle.label}>Выберите стиль</label>
+            <select :value={store.$.people[i - 1].style} title="Выберите стиль" id="style-select-{i}" class={selectStyle.select}>
+                <option value="default">По умолчанию</option>
+                <option value="satan">Сатанинский</option>
+                <option value="pony-rarity">С пони (Рарити)</option>
+            </select>
+        </div>
+
+        <button @click={remove} aria-label="Удалить" class={clsx(buttonStyle.button, buttonStyle.buttonClose)}>
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.25 6.75L6.75 17.25"></path>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 6.75L17.25 17.25"></path>
+            </svg>
+        </button>
+
+    {:else}
+        <button aria-label="Добавить" type="button" class={cardStyle.add} @click={born = true}>
+            <svg width="4.5rem" height="4.5rem" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5.75V18.25"></path>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.25 12L5.75 12"></path>
+            </svg>
+        </button>
+        <p aria-hidden="true">Добавить</p>
+    {/if}
+</div>

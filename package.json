@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "name": "school-slave-generator",
+  "description": "Генератор карточек для школьного дежурства",
+  "scripts": {
+    "dev": "MODE=dev vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.4.2",
+    "vite-plugin-html": "^2.0.7",
+    "vite-plugin-singlefile": "^0.5.1"
+  },
+  "dependencies": {
+    "@vanilla-extract/css": "^1.1.1",
+    "@vanilla-extract/vite-plugin": "^1.0.0",
+    "clsx": "^1.1.1",
+    "malinajs": "^0.6.39",
+    "storxy": "^0.1.4"
+  }
+}
