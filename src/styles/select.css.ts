@@ -9,6 +9,7 @@ export const select = style({
   height: "2.625rem",
   width: "100%",
   fontSize: "1em",
+  backgroundColor: '#fff',
   ":hover": {
     backgroundColor: vars.color["cool-gray"][100],
     borderColor: vars.color["cool-gray"][300]
