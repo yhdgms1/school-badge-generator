@@ -17,6 +17,7 @@
     "@vanilla-extract/vite-plugin": "^1.0.0",
     "clsx": "^1.1.1",
     "malinajs": "^0.6.39",
-    "storxy": "^0.1.4"
+    "storxy": "^0.1.4",
+    "terser-config-atomic": "^0.1.1"
   }
 }
