@@ -6,6 +6,7 @@ import * as styles from "./app.css"
 import * as selectStyle from "../styles/select.css"
 import * as inputStyle from "../styles/input.css"
 import * as buttonStyle from "../styles/button.css"
+import * as linkStyle from '../styles/link.css'
 import { store } from "../data/data"
 import { createImage } from "../lib/createImage.ts"
 
@@ -26,7 +27,8 @@ const proceedToCreateAnImage = async () => {
 
 <Modal @close={isModalOpen = false} isOpen={isModalOpen}>
     <p>Готово! Скачайте файл, нажав на кнопку ниже:</p>
-    <a href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
+    <!-- download attribute may not work in Safari -->
+    <a tabindex="1" class={linkStyle.linkUgly} href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
 </Modal>
 
 <div class={styles.aside}>
