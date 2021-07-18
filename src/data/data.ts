@@ -7,7 +7,7 @@ interface Global {
 
 interface People {
   name: string
-  grage: string
+  grade: string
   gender?: "male" | "female"
   style?: "default" | "satan" | "pony-rarity"
 }

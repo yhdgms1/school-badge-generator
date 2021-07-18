@@ -3,7 +3,7 @@ import * as utils from "./utils"
 
 const drawImages = async (ctx: CanvasRenderingContext2D, image: HTMLImageElement, style: string, i: string) =>
   new Promise(resolve => {
-    const mediaMargins = utils.getMediaMargins(i)
+    const mediaMargins = utils.getMediaMargins(Number(i))
 
     image.addEventListener("load", () => {
       ctx.drawImage(image, mediaMargins.left.x, mediaMargins.left.y, image.width, image.height)
@@ -25,7 +25,7 @@ const drawImages = async (ctx: CanvasRenderingContext2D, image: HTMLImageElement
     image.src = `/assets/images/${style}.png`
   })
 
-const getBlob = async (canvas: HTMLCanvasElement): string =>
+const getBlob = async (canvas: HTMLCanvasElement): Promise<string> =>
   new Promise(resolve => canvas.toBlob(blob => resolve(URL.createObjectURL(blob)), "image/png", 1.0))
 
 export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
@@ -49,10 +49,11 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
 
   // Load font
 
+  //@ts-ignore
   const font = new FontFace(data.global.font, `url('/assets/fonts/${data.global.font}.woff2')`)
 
   await font.load()
-
+  //@ts-ignore
   document.fonts.add(font)
 
   for (let i in data.people) {
@@ -64,7 +65,7 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
      */
     if (card.name === "" && card.grade === "") continue
 
-    const cardPosition = utils.getCardPosition(i)
+    const cardPosition = utils.getCardPosition(Number(i))
     // 'satan' style has a black background so we need a white text
     const textColor = card.style === "satan" ? "#fff" : "#000"
 
@@ -87,7 +88,7 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
     const headerText = card.gender === "female" ? "Дежурная по школе" : "Дежурный по школе"
     const headerTextWidth = ctx.measureText(headerText).width
 
-    const textMargins = utils.getTextMargins(i)
+    const textMargins = utils.getTextMargins(Number(i))
 
     ctx.fillText(headerText, textMargins.x - headerTextWidth / 2, textMargins.y)
 
@@ -113,7 +114,7 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
      * Draw x класс
      */
 
-    const gradeText = `${data.global.grade ?? card.grage} класс`
+    const gradeText = `${data.global.grade || card.grade} класс`
     ctx.font = `bold 86px ${data.global.font}`
     const gradeWidth = ctx.measureText(gradeText).width
 

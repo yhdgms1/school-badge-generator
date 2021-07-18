@@ -3,16 +3,16 @@
  * I don't know how to get these numbers now
  */
 
-export const getCardPosition = (i: string) => {
+export const getCardPosition = (i: number) => {
   let y = 0
 
-  if (i == 0 || i == 1) {
+  if (i === 0 || i === 1) {
     y = 56
-  } else if (i == 2 || i == 3) {
+  } else if (i === 2 || i === 3) {
     y = 730
-  } else if (i == 4 || i == 5) {
+  } else if (i === 4 || i === 5) {
     y = 1404
-  } else if (i == 6 || i == 7) {
+  } else if (i === 6 || i === 7) {
     y = 2078
   }
 
@@ -22,16 +22,16 @@ export const getCardPosition = (i: string) => {
   }
 }
 
-export const getTextMargins = (i: string) => {
+export const getTextMargins = (i: number) => {
   let y = 0
 
-  if (i == 0 || i == 1) {
+  if (i === 0 || i === 1) {
     y = 200
-  } else if (i == 2 || i == 3) {
+  } else if (i === 2 || i === 3) {
     y = 874
-  } else if (i == 4 || i == 5) {
+  } else if (i === 4 || i === 5) {
     y = 1548
-  } else if (i == 6 || i == 7) {
+  } else if (i === 6 || i === 7) {
     y = 2222
   }
 
@@ -41,16 +41,16 @@ export const getTextMargins = (i: string) => {
   }
 }
 
-export const getMediaMargins = (i: string) => {
+export const getMediaMargins = (i: number) => {
   let y = 0
 
-  if (i == 0 || i == 1) {
+  if (i === 0 || i === 1) {
     y = 391
-  } else if (i == 2 || i == 3) {
+  } else if (i === 2 || i === 3) {
     y = 1065
-  } else if (i == 4 || i == 5) {
+  } else if (i === 4 || i === 5) {
     y = 1739
-  } else if (i == 6 || i == 7) {
+  } else if (i === 6 || i === 7) {
     y = 2413
   }
 
