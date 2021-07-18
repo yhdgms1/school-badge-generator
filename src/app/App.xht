@@ -18,7 +18,7 @@ let isModalOpen = false
 const proceedToCreateAnImage = async () => {
   if (result) URL.revokeObjectURL(result)
 
-  result = await createImage(canvas, JSON.parse(JSON.stringify(store.$)))
+  result = await createImage(canvas, store.$)
 
   isModalOpen = true
 };
@@ -26,29 +26,27 @@ const proceedToCreateAnImage = async () => {
 </script>
 
 <Modal @close={isModalOpen = false} isOpen={isModalOpen}>
-    <p>Готово! Скачайте файл, нажав на кнопку ниже:</p>
-    <!-- download attribute may not work in Safari -->
+    <p>Готово! Скачайте файл, нажав на ссылку:</p>
     <a tabindex="1" class={linkStyle.linkUgly} href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
 </Modal>
 
 <div class={styles.aside}>
-    <div class={selectStyle.container}>
-        <label for="font-select" class={selectStyle.label}>Выберите шрифт</label>
-        <select :value={store.$.global.font} title="Выберите шрифт" id="font-select" class={selectStyle.select}>
-            <option value="arial">Arial</option>
-            <option value="intro">Intro</option>
-        </select>
-    </div>
-    <div class={inputStyle.container}>
-        <input :value={store.$.global.grade} type="text" class={inputStyle.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
-    </div>
-    <div class={inputStyle.container}>
-        <button @click:proceedToCreateAnImage type="button" class={clsx(buttonStyle.button, buttonStyle.buttonBlue)}>Создать</button>
-    </div>
+  <div class={selectStyle.container}>
+    <label for="font-select" class={selectStyle.label}>Выберите шрифт</label>
+    <select :value={store.$.global.font} title="Выберите шрифт" id="font-select" class={selectStyle.select}>
+      <option value="arial">Arial</option>
+      <option value="intro">Intro</option>
+    </select>
+  </div>
+  <div class={inputStyle.container}>
+    <input :value={store.$.global.grade} type="text" class={inputStyle.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
+  </div>
+  <div class={inputStyle.container}>
+    <button @click:proceedToCreateAnImage type="button" class={clsx(buttonStyle.button, buttonStyle.buttonBlue)}>Создать</button>
+  </div>
 </div>
-
 <main class={styles.main}>
-	{#each 8 as i}
-        <Card {i}/>
-    {/each}
+  {#each 8 as i}
+    <Card {i}/>
+  {/each}
 </main>

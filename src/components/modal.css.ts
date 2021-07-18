@@ -17,7 +17,12 @@ export const bg = style({
 export const windowWrap = style({
     position: 'relative',
     margin: '2rem',
-    maxHeight: '100%'
+    maxHeight: '100%',
+    "@media": {
+        "screen and (max-width: 1625px)": {
+            margin: '2rem auto',
+        }
+    },
 })
 
 export const window = style({
@@ -28,11 +33,18 @@ export const window = style({
     color: 'black',
     borderRadius: '.5rem',
     background: 'white',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    flexDirection: 'row-reverse',
     "@media": {
         "(prefers-color-scheme: dark)": {
           color: '#eee',
           background: vars.color["cool-gray"][700]
         },
+        "screen and (max-width: 1625px)": {
+            width: "95%",
+        }
     },
 })
 
@@ -40,7 +52,8 @@ export const content = style({
     position: 'relative',
     padding: '1rem',
     maxHeight: 'calc(100vh - 4rem)',
-    overflow: 'auto'
+    overflow: 'auto',
+    width: '100%'
 })
 
 export const header = style({
@@ -57,6 +70,7 @@ export const close = style({
     justifyContent: 'center',
     background: 'transparent',
     border: 'none',
+    cursor: 'pointer',
     ':active': {
         transform: 'scale(0.9)'
     },
