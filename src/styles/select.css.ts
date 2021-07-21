@@ -10,6 +10,8 @@ export const select = style({
   width: "100%",
   fontSize: "1em",
   backgroundColor: '#fff',
+  WebkitAppearance: 'none',
+  appearance: 'none',
   ":hover": {
     backgroundColor: vars.color["cool-gray"][100],
     borderColor: vars.color["cool-gray"][300]
