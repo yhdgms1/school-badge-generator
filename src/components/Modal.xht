@@ -1,10 +1,10 @@
-<script>
+<script property>
 import { clickOutside } from "../lib/actions/clickOutside.js"
 import * as modalStyles from './modal.css'
 
 export let isOpen = false
 
-let modalWindow, scrollY, prevBodyOverflow
+let modalWindow
 
 const handleKeydown = event => {
   if (isOpen && event.key === "Tab") {
@@ -22,25 +22,8 @@ const handleKeydown = event => {
   }
 }
 
-const disableScroll = () => {
-  scrollY = window.scrollY;
-  prevBodyOverflow = document.body.style.overflow;
-  document.body.style.top = `-${scrollY}px`;
-  document.body.style.overflow = 'hidden';
-}
-
-const enableScroll = () => {
-  document.body.style.top = '';
-  document.body.style.overflow = prevBodyOverflow || '';
-  window.scrollTo(0, scrollY);
-}
-
-$: isOpen, () => isOpen && disableScroll()
-
 const close = () => {
   isOpen = false
-  enableScroll()
-  $emit("close")
 };
 
 </script>

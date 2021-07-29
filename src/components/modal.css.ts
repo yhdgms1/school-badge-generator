@@ -19,7 +19,7 @@ export const windowWrap = style({
     margin: '2rem',
     maxHeight: '100%',
     "@media": {
-        "screen and (max-width: 1625px)": {
+        "screen and (max-width: 512px)": {
             margin: '2rem auto',
         }
     },

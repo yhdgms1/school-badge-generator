@@ -1,16 +1,12 @@
 import { style } from "@vanilla-extract/css"
-import { vars } from "./theme.css"
 
 export const button = style({
-  borderRadius: ".625rem",
+  borderRadius: ".375rem",
   transition: "all 150ms ease-in-out",
   cursor: "pointer",
   height: "2.875rem",
-  lineHeight: "2.875rem",
   width: "100%",
-  textAlign: "center",
   border: "none",
-  textDecoration: "none",
   fontSize: ".875em"
 })
 
@@ -29,7 +25,6 @@ export const buttonClose = style({
   background: "#f57187",
   height: "2.5rem",
   width: "2.5rem",
-  borderRadius: ".375rem",
   position: "absolute",
   top: ".875rem",
   right: ".875rem",

@@ -1,7 +1,7 @@
 import type { Data } from "../data/data"
 import * as utils from "./utils"
 
-const drawImages = async (ctx: CanvasRenderingContext2D, style: string, i: string) =>
+const drawImages = async (ctx: CanvasRenderingContext2D, style: string, i: string): Promise<void> =>
   new Promise(Ok => {
     const image = document.createElement("img")
 

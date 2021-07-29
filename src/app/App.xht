@@ -13,21 +13,21 @@ import { createImage } from "../lib/createImage.ts"
 const canvas = document.createElement("canvas")
 
 let result = ""
-let isModalOpen = false
+let modal
 
 const proceedToCreateAnImage = async () => {
   if (result) URL.revokeObjectURL(result)
 
   result = await createImage(canvas, store.$)
 
-  isModalOpen = true
+  modal.isOpen = true
 };
 
 </script>
 
-<Modal @close={isModalOpen = false} isOpen={isModalOpen}>
+<Modal #modal>
     <p>Готово! Скачайте файл, нажав на ссылку:</p>
-    <a tabindex="1" class={linkStyle.linkUgly} href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
+    <a tabindex="1" class={linkStyle.link} href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
 </Modal>
 
 <div class={styles.aside}>
