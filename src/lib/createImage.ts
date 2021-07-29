@@ -104,12 +104,8 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
     let nameWidth = ctx.measureText(card.name).width
     //If long name
     if (nameWidth >= 1023) {
-      ctx.font = `500 70px ${data.global.font}`
-      nameWidth = ctx.measureText(card.name).width
-    }
-    //If very long name
-    if (nameWidth >= 1023) {
-      ctx.font = `500 28px ${data.global.font}`
+      // 🙏 Let's pray everything will be fine
+      ctx.font = `500 ${(1023 / card.name.length) * 1.3}px ${data.global.font}`
       nameWidth = ctx.measureText(card.name).width
     }
     ctx.fillText(card.name, textMargins.x - nameWidth / 2, textMargins.y + 104)

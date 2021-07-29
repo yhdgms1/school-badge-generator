@@ -21,7 +21,7 @@ const remove = () => {
 <div class={cardStyle.card}>
     {#if born}
         <div class={inputStyle.container}>
-            <input :value={store.$.people[i - 1].name} type="text" class={inputStyle.input} spellcheck="false" placeholder="Введите имя и фамилию">
+            <input :value={store.$.people[i - 1].name} type="text" class={inputStyle.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
         </div>
 
         {#if !store.$.global.grade}
