@@ -46,17 +46,16 @@ const remove = () => {
             </select>
         </div>
 
-        <button @click={remove} aria-label="Удалить" class={clsx(buttonStyle.button, buttonStyle.buttonClose)}>
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <button @click={remove} type="button" aria-label="Удалить" class={clsx(buttonStyle.button, buttonStyle.buttonClose)}>
+            <svg width="24" height="24">
                 <use href="#close-icon"/>
             </svg>
         </button>
 
     {:else}
         <button aria-label="Добавить" type="button" class={cardStyle.add} @click={born = true}>
-            <svg width="4.5rem" height="4.5rem" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5.75V18.25"></path>
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.25 12L5.75 12"></path>
+            <svg width="4.5rem" height="4.5rem">
+                <use href="#add-icon"/>
             </svg>
         </button>
         <p aria-hidden="true">Добавить</p>

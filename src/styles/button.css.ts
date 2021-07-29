@@ -3,7 +3,7 @@ import { vars } from "./theme.css"
 
 export const button = style({
   borderRadius: ".625rem",
-  transition: "all 150ms ease",
+  transition: "all 150ms ease-in-out",
   cursor: "pointer",
   height: "2.875rem",
   lineHeight: "2.875rem",
@@ -36,9 +36,7 @@ export const buttonClose = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  userSelect: "none",
   cursor: "pointer",
-  border: `1px solid rgba(0, 0, 0, 0.11)`,
   ":hover": {
     background: "#eb6c81"
   },
