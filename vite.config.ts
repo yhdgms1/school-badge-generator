@@ -11,14 +11,13 @@ export default defineConfig({
     malinaPlugin({
       extension: ['ma', 'xht'],
       displayVersion: false,
-      compact: true,
     }),
     vanillaExtractPlugin(),
     !DEV && viteSingleFile(),
     !DEV && minifyHtml(),
   ],
   build: {
-    target: 'esnext',
+    target: ['chrome64'],
     polyfillDynamicImport: false,
     cssCodeSplit: false,
     rollupOptions: {

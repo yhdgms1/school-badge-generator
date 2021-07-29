@@ -1,8 +1,10 @@
 import type { Data } from "../data/data"
 import * as utils from "./utils"
 
-const drawImages = async (ctx: CanvasRenderingContext2D, image: HTMLImageElement, style: string, i: string) =>
-  new Promise(resolve => {
+const drawImages = async (ctx: CanvasRenderingContext2D, style: string, i: string) =>
+  new Promise(Ok => {
+    const image = document.createElement("img")
+
     const mediaMargins = utils.getMediaMargins(Number(i))
 
     image.addEventListener("load", () => {
@@ -17,9 +19,10 @@ const drawImages = async (ctx: CanvasRenderingContext2D, image: HTMLImageElement
       ctx.setTransform(-1, 0, 0, 1, mediaMargins.right.x + image.width, mediaMargins.right.y)
 
       ctx.drawImage(image, 0, 0)
+
       ctx.restore()
 
-      resolve(true)
+      Ok()
     })
 
     image.src = `/assets/images/${style}.png`
@@ -31,7 +34,7 @@ const getBlob = async (canvas: HTMLCanvasElement): Promise<string> =>
 export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
   let result = ""
 
-  const ctx = canvas.getContext("2d")
+  const ctx = canvas.getContext("2d", { alpha: false })
 
   if (!ctx) return
 
@@ -60,7 +63,6 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
     const card = data.people[i]
 
     /*
-     * style by default is 'default', style is 'satan', name and grade is ''
      * just skip card creating because it is meaningless
      */
     if (card.name === "" && card.grade === "") continue
@@ -81,8 +83,10 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
 
     /*
      * Draw Дежурный(ая) по школе
+     *
+     * 'bold', '600', '700', causes ugly 'й' in Chrome
      */
-    ctx.font = `bold 70px ${data.global.font}`
+    ctx.font = `500 70px ${data.global.font}`
     ctx.fillStyle = textColor
 
     const headerText = card.gender === "female" ? "Дежурная по школе" : "Дежурный по школе"
@@ -95,17 +99,17 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
     /*
      * Draw name and surname
      */
-    ctx.font = `bold 86px ${data.global.font}`
+    ctx.font = `500 86px ${data.global.font}`
 
     let nameWidth = ctx.measureText(card.name).width
     //If long name
     if (nameWidth >= 1023) {
-      ctx.font = `bold 70px ${data.global.font}`
+      ctx.font = `500 70px ${data.global.font}`
       nameWidth = ctx.measureText(card.name).width
     }
-    //If very long text
+    //If very long name
     if (nameWidth >= 1023) {
-      ctx.font = `bold 28px ${data.global.font}`
+      ctx.font = `500 28px ${data.global.font}`
       nameWidth = ctx.measureText(card.name).width
     }
     ctx.fillText(card.name, textMargins.x - nameWidth / 2, textMargins.y + 104)
@@ -115,7 +119,7 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
      */
 
     const gradeText = `${data.global.grade || card.grade} класс`
-    ctx.font = `bold 86px ${data.global.font}`
+    ctx.font = `500 86px ${data.global.font}`
     const gradeWidth = ctx.measureText(gradeText).width
 
     ctx.fillText(gradeText, textMargins.x - gradeWidth / 2, textMargins.y + 208)
@@ -125,8 +129,7 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
      */
 
     if (card.style !== "default") {
-      const image = document.createElement("img")
-      await drawImages(ctx, image, card.style, i)
+      await drawImages(ctx, card.style, i)
     }
   }
 
