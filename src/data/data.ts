@@ -22,7 +22,7 @@ const initial: Data = {
     font: "arial",
     grade: ""
   },
-  people: new Array(8).fill("").map(() => ({ name: "", grade: "", gender: "male", style: "default" }))
+  people: new Array(10).fill("").map(() => ({ name: "", grade: "", gender: "male", style: "default" }))
 }
 
 export const store = createStore(initial)
