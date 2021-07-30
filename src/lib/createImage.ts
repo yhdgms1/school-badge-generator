@@ -88,8 +88,6 @@ export const createImage = async (data: Data) => {
 
     /*
      * Draw Дежурный(ая) по школе
-     *
-     * 'bold', '600', '700', causes ugly 'й' in Chrome
      */
     ctx.font = `500 70px ${data.global.font}`
     ctx.fillStyle = textColor
@@ -109,7 +107,6 @@ export const createImage = async (data: Data) => {
     let nameWidth = ctx.measureText(card.name).width
     //If long name
     if (nameWidth >= 1023) {
-      // 🙏 Let's pray everything will be fine
       ctx.font = `500 ${(1023 / card.name.length) * 1.3}px ${data.global.font}`
       nameWidth = ctx.measureText(card.name).width
     }
