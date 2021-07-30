@@ -31,17 +31,15 @@ const drawImages = async (ctx: CanvasRenderingContext2D, style: string, i: strin
 const getBlob = async (canvas: HTMLCanvasElement): Promise<string> =>
   new Promise(resolve => canvas.toBlob(blob => resolve(URL.createObjectURL(blob)), "image/png", 1.0))
 
-export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
-  let result = ""
+const canvas = document.createElement("canvas")
+const ctx = canvas.getContext("2d", { alpha: false })
 
-  const ctx = canvas.getContext("2d", { alpha: false })
+// A4 paper size
 
-  if (!ctx) return
+canvas.width = 2480
+canvas.height = 3508
 
-  // A4 paper size
-
-  canvas.width = 2480
-  canvas.height = 3508
+export const createImage = async (data: Data) => {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -49,8 +47,6 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
 
   ctx.fillStyle = "#fff"
   ctx.fillRect(0, 0, 2480, 3508)
-
-  // Load font
 
   //@ts-ignore
   const font = new FontFace(data.global.font, `url('/assets/fonts/${data.global.font}.woff2')`)
@@ -72,6 +68,7 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
     const textColor = card.style === "satan" ? "#fff" : "#000"
 
     //Draw border
+    //todo Find out what sRGB does to colour
     ctx.fillStyle = "#010203"
     ctx.fillRect(cardPosition.x, cardPosition.y, 1063, 618)
 
@@ -79,6 +76,14 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
     if (card.style !== "satan") {
       ctx.fillStyle = "#fff"
       ctx.fillRect(cardPosition.x + 10, cardPosition.y + 10, 1063 - 20, 618 - 20)
+    }
+
+    /*
+    * Render media (pony, star, etc...)
+    */
+
+    if (card.style !== "default") {
+      await drawImages(ctx, card.style, i)
     }
 
     /*
@@ -119,14 +124,6 @@ export const createImage = async (canvas: HTMLCanvasElement, data: Data) => {
     const gradeWidth = ctx.measureText(gradeText).width
 
     ctx.fillText(gradeText, textMargins.x - gradeWidth / 2, textMargins.y + 208)
-
-    /*
-     * Render media (pony, star, etc...)
-     */
-
-    if (card.style !== "default") {
-      await drawImages(ctx, card.style, i)
-    }
   }
 
   return await getBlob(canvas)

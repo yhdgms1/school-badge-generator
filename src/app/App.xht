@@ -10,15 +10,13 @@ import * as linkStyle from '../styles/link.css'
 import { store } from "../data"
 import { createImage } from "../lib/createImage.ts"
 
-const canvas = document.createElement("canvas")
-
 let result = ""
 let modal
 
 const proceedToCreateAnImage = async () => {
   if (result) URL.revokeObjectURL(result)
 
-  result = await createImage(canvas, store.$)
+  result = await createImage(store.$)
 
   modal.isOpen = true
 };
