@@ -68,7 +68,6 @@ export const createImage = async (data: Data) => {
     const textColor = card.style === "satan" ? "#fff" : "#000"
 
     //Draw border
-    //todo Find out what sRGB does to colour
     ctx.fillStyle = "#010203"
     ctx.fillRect(cardPosition.x, cardPosition.y, 1063, 618)
 

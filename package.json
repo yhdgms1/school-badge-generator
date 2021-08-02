@@ -3,13 +3,13 @@
   "name": "school-slave-generator",
   "description": "Генератор карточек для школьного дежурства",
   "scripts": {
-    "dev": "MODE=dev vite",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --project ./"
   },
   "devDependencies": {
-    "@vanilla-extract/css": "^1.2.0",
+    "@vanilla-extract/css": "^1.2.1",
     "@vanilla-extract/vite-plugin": "^1.1.0",
     "typescript": "^4.3.5",
     "vite": "^2.4.4",
