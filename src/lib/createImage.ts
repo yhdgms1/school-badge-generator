@@ -1,38 +1,21 @@
-import type { Data } from "../data/data"
-import * as utils from "./utils"
+import type { Data } from '../data/data'
+import * as utils from './utils'
 
-const drawImages = async (ctx: CanvasRenderingContext2D, style: string, i: string): Promise<void> =>
-  new Promise(Ok => {
-    const image = document.createElement("img")
+const loadImage = async (path: string): Promise<HTMLImageElement | null> =>
+  new Promise((Ok, Err) => {
+    const image = document.createElement('img')
 
-    const mediaMargins = utils.getMediaMargins(Number(i))
+    image.onerror = () => Err()
+    image.onload = () => Ok(image)
 
-    image.addEventListener("load", () => {
-      ctx.drawImage(image, mediaMargins.left.x, mediaMargins.left.y, image.width, image.height)
-
-      /*
-       * Draw mirrored image
-       */
-
-      ctx.save()
-
-      ctx.setTransform(-1, 0, 0, 1, mediaMargins.right.x + image.width, mediaMargins.right.y)
-
-      ctx.drawImage(image, 0, 0)
-
-      ctx.restore()
-
-      Ok()
-    })
-
-    image.src = `/assets/images/${style}.png`
+    image.src = path
   })
 
 const getBlob = async (canvas: HTMLCanvasElement): Promise<string> =>
-  new Promise(resolve => canvas.toBlob(blob => resolve(URL.createObjectURL(blob)), "image/png", 1.0))
+  new Promise(resolve => canvas.toBlob(blob => resolve(URL.createObjectURL(blob)), 'image/png', 1.0))
 
-const canvas = document.createElement("canvas")
-const ctx = canvas.getContext("2d", { alpha: false })
+const canvas = document.createElement('canvas')
+const ctx = canvas.getContext('2d', { alpha: false })
 
 // A4 paper size
 
@@ -40,12 +23,11 @@ canvas.width = 2480
 canvas.height = 3508
 
 export const createImage = async (data: Data) => {
-
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
   // Create background
 
-  ctx.fillStyle = "#fff"
+  ctx.fillStyle = '#fff'
   ctx.fillRect(0, 0, 2480, 3508)
 
   //@ts-ignore
@@ -61,28 +43,46 @@ export const createImage = async (data: Data) => {
     /*
      * just skip card creating because it is meaningless
      */
-    if (card.name === "" && card.grade === "") continue
+    if (card.name === '' && card.grade === '') continue
 
     const cardPosition = utils.getCardPosition(Number(i))
     // 'satan' style has a black background so we need a white text
-    const textColor = card.style === "satan" ? "#fff" : "#000"
+    const textColor = card.style === 'satan' ? '#fff' : '#000'
 
     //Draw border
-    ctx.fillStyle = "#010203"
+    ctx.fillStyle = '#010203'
     ctx.fillRect(cardPosition.x, cardPosition.y, 1063, 618)
 
     //Draw white rect
-    if (card.style !== "satan") {
-      ctx.fillStyle = "#fff"
+    if (card.style !== 'satan') {
+      ctx.fillStyle = '#fff'
       ctx.fillRect(cardPosition.x + 10, cardPosition.y + 10, 1063 - 20, 618 - 20)
     }
 
     /*
-    * Render media (pony, star, etc...)
-    */
+     * Render media (pony, star, etc...)
+     */
 
-    if (card.style !== "default") {
-      await drawImages(ctx, card.style, i)
+    if (card.style !== 'default') {
+      try {
+        const image = await loadImage(`/assets/images/${card.style}.png`)
+
+        const mediaMargins = utils.getMediaMargins(Number(i))
+
+        ctx.drawImage(image, mediaMargins.left.x, mediaMargins.left.y, image.width, image.height)
+
+        /*
+         * Draw mirrored image
+         */
+
+        ctx.save()
+
+        ctx.setTransform(-1, 0, 0, 1, mediaMargins.right.x + image.width, mediaMargins.right.y)
+
+        ctx.drawImage(image, 0, 0)
+
+        ctx.restore()
+      } catch {} //oof
     }
 
     /*
@@ -91,7 +91,7 @@ export const createImage = async (data: Data) => {
     ctx.font = `500 70px ${data.global.font}`
     ctx.fillStyle = textColor
 
-    const headerText = card.gender === "female" ? "Дежурная по школе" : "Дежурный по школе"
+    const headerText = card.gender === 'female' ? 'Дежурная по школе' : 'Дежурный по школе'
     const headerTextWidth = ctx.measureText(headerText).width
 
     const textMargins = utils.getTextMargins(Number(i))
