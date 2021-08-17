@@ -51,12 +51,12 @@ export const createImage = async (data: Data) => {
 
     //Draw border
     ctx.fillStyle = '#010203'
-    ctx.fillRect(cardPosition.x, cardPosition.y, 1063, 618)
+    ctx.fillRect(cardPosition.x, cardPosition.y, utils.Card.Width, utils.Card.Height)
 
     //Draw white rect
     if (card.style !== 'satan') {
       ctx.fillStyle = '#fff'
-      ctx.fillRect(cardPosition.x + 10, cardPosition.y + 10, 1063 - 20, 618 - 20)
+      ctx.fillRect(cardPosition.x + 10, cardPosition.y + 10, utils.Card.Width - 20, utils.Card.Height - 20)
     }
 
     /*
@@ -105,8 +105,8 @@ export const createImage = async (data: Data) => {
 
     let nameWidth = ctx.measureText(card.name).width
     //If long name
-    if (nameWidth >= 1023) {
-      ctx.font = `500 ${(1023 / card.name.length) * 1.3}px ${data.global.font}`
+    if (nameWidth >= (utils.Card.Width - 40)) {
+      ctx.font = `500 ${((utils.Card.Width - 40) / card.name.length) * 1.3}px ${data.global.font}`
       nameWidth = ctx.measureText(card.name).width
     }
     ctx.fillText(card.name, textMargins.x - nameWidth / 2, textMargins.y + 104)

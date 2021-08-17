@@ -9,16 +9,16 @@
     "typecheck": "tsc --project ./"
   },
   "devDependencies": {
-    "@vanilla-extract/css": "^1.2.1",
-    "@vanilla-extract/vite-plugin": "^1.1.0",
+    "@vanilla-extract/css": "^1.2.3",
+    "@vanilla-extract/vite-plugin": "^1.1.2",
     "typescript": "^4.3.5",
-    "vite": "^2.4.4",
+    "vite": "^2.5.0",
     "vite-plugin-html": "^2.0.7",
     "vite-plugin-singlefile": "^0.5.1"
   },
   "dependencies": {
     "clsx": "^1.1.1",
-    "malinajs": "^0.6.41",
+    "malinajs": "^0.6.42",
     "storxy": "^0.1.4"
   }
 }

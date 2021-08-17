@@ -1,7 +1,7 @@
 import { store as createStore } from "storxy"
 
 interface Global {
-  font?: "arial" | "intro"
+  font: "arial" | "intro"
   grade?: string
 }
 
@@ -13,7 +13,7 @@ interface People {
 }
 
 export interface Data {
-  global?: Global
+  global: Global
   people: People[]
 }
 
@@ -22,7 +22,7 @@ const initial: Data = {
     font: "arial",
     grade: ""
   },
-  people: new Array(10).fill("").map(() => ({ name: "", grade: "", gender: "male", style: "default" }))
+  people: new Array(10).fill(null).map(() => ({ name: "", grade: "", gender: "male", style: "default" }))
 }
 
 export const store = createStore(initial)
