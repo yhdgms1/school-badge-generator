@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "school-slave-generator",
   "description": "Генератор карточек для школьного дежурства",
   "scripts": {
