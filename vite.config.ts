@@ -5,7 +5,6 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { default as malinaPlugin } from 'malinajs/malina-rollup'
 
 export default defineConfig(({ mode }) => {
-
   const DEV = mode === 'development'
 
   return {

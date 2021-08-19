@@ -5,14 +5,16 @@ const loadImage = async (path: string): Promise<HTMLImageElement | null> =>
   new Promise((Ok, Err) => {
     const image = document.createElement('img')
 
-    image.onerror = () => Err()
+    image.onerror = Err
     image.onload = () => Ok(image)
 
     image.src = path
   })
 
 const getBlob = async (canvas: HTMLCanvasElement): Promise<string> =>
-  new Promise(resolve => canvas.toBlob(blob => resolve(URL.createObjectURL(blob)), 'image/png', 1.0))
+  new Promise(resolve =>
+    canvas.toBlob(blob => resolve(URL.createObjectURL(blob)), 'image/png', 1.0)
+  )
 
 const canvas = document.createElement('canvas')
 const ctx = canvas.getContext('2d', { alpha: false })
@@ -31,7 +33,10 @@ export const createImage = async (data: Data) => {
   ctx.fillRect(0, 0, 2480, 3508)
 
   //@ts-ignore
-  const font = new FontFace(data.global.font, `url('/assets/fonts/${data.global.font}.woff2')`)
+  const font = new FontFace(
+    data.global.font,
+    `url('/assets/fonts/${data.global.font}.woff2')`
+  )
 
   await font.load()
   //@ts-ignore
@@ -51,12 +56,22 @@ export const createImage = async (data: Data) => {
 
     //Draw border
     ctx.fillStyle = '#010203'
-    ctx.fillRect(cardPosition.x, cardPosition.y, utils.Card.Width, utils.Card.Height)
+    ctx.fillRect(
+      cardPosition.x,
+      cardPosition.y,
+      utils.Card.Width,
+      utils.Card.Height
+    )
 
     //Draw white rect
     if (card.style !== 'satan') {
       ctx.fillStyle = '#fff'
-      ctx.fillRect(cardPosition.x + 10, cardPosition.y + 10, utils.Card.Width - 20, utils.Card.Height - 20)
+      ctx.fillRect(
+        cardPosition.x + utils.Padding,
+        cardPosition.y + utils.Padding,
+        utils.Card.Width - utils.Padding * 2,
+        utils.Card.Height - utils.Padding * 2
+      )
     }
 
     /*
@@ -69,7 +84,13 @@ export const createImage = async (data: Data) => {
 
         const mediaMargins = utils.getMediaMargins(Number(i))
 
-        ctx.drawImage(image, mediaMargins.left.x, mediaMargins.left.y, image.width, image.height)
+        ctx.drawImage(
+          image,
+          mediaMargins.left.x,
+          mediaMargins.left.y,
+          image.width,
+          image.height
+        )
 
         /*
          * Draw mirrored image
@@ -77,7 +98,14 @@ export const createImage = async (data: Data) => {
 
         ctx.save()
 
-        ctx.setTransform(-1, 0, 0, 1, mediaMargins.right.x + image.width, mediaMargins.right.y)
+        ctx.setTransform(
+          -1,
+          0,
+          0,
+          1,
+          mediaMargins.right.x + image.width,
+          mediaMargins.right.y
+        )
 
         ctx.drawImage(image, 0, 0)
 
@@ -91,7 +119,8 @@ export const createImage = async (data: Data) => {
     ctx.font = `500 70px ${data.global.font}`
     ctx.fillStyle = textColor
 
-    const headerText = card.gender === 'female' ? 'Дежурная по школе' : 'Дежурный по школе'
+    const headerText =
+      card.gender === 'female' ? 'Дежурная по школе' : 'Дежурный по школе'
     const headerTextWidth = ctx.measureText(headerText).width
 
     const textMargins = utils.getTextMargins(Number(i))
@@ -105,11 +134,17 @@ export const createImage = async (data: Data) => {
 
     let nameWidth = ctx.measureText(card.name).width
     //If long name
-    if (nameWidth >= (utils.Card.Width - 40)) {
-      ctx.font = `500 ${((utils.Card.Width - 40) / card.name.length) * 1.3}px ${data.global.font}`
+    if (nameWidth >= utils.Card.Width - utils.Padding * 4) {
+      ctx.font = `500 ${
+        ((utils.Card.Width - utils.Padding * 4) / card.name.length) * 1.3
+      }px ${data.global.font}`
       nameWidth = ctx.measureText(card.name).width
     }
-    ctx.fillText(card.name, textMargins.x - nameWidth / 2, textMargins.y + 104)
+    ctx.fillText(
+      card.name,
+      textMargins.x - nameWidth / 2,
+      textMargins.y + utils.Margin.Vertical * 2 - 20
+    )
 
     /*
      * Draw x класс
@@ -119,7 +154,11 @@ export const createImage = async (data: Data) => {
     ctx.font = `500 86px ${data.global.font}`
     const gradeWidth = ctx.measureText(gradeText).width
 
-    ctx.fillText(gradeText, textMargins.x - gradeWidth / 2, textMargins.y + 208)
+    ctx.fillText(
+      gradeText,
+      textMargins.x - gradeWidth / 2,
+      textMargins.y + utils.Margin.Vertical * 4 - 40
+    )
   }
 
   return await getBlob(canvas)

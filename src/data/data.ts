@@ -1,15 +1,15 @@
-import { store as createStore } from "storxy"
+import { store as createStore } from 'storxy'
 
 interface Global {
-  font: "arial" | "intro"
+  font: 'arial' | 'intro'
   grade?: string
 }
 
 interface People {
   name: string
   grade: string
-  gender?: "male" | "female"
-  style?: "default" | "satan" | "pony-rarity"
+  gender?: 'male' | 'female'
+  style?: 'default' | 'satan' | 'pony-rarity'
 }
 
 export interface Data {
@@ -19,10 +19,15 @@ export interface Data {
 
 const initial: Data = {
   global: {
-    font: "arial",
-    grade: ""
+    font: 'arial',
+    grade: '',
   },
-  people: new Array(10).fill(null).map(() => ({ name: "", grade: "", gender: "male", style: "default" }))
+  people: new Array(10).fill(null).map(() => ({
+    name: '',
+    grade: '',
+    gender: 'male',
+    style: 'default',
+  })),
 }
 
 export const store = createStore(initial)
