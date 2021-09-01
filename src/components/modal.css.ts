@@ -19,7 +19,7 @@ export const windowWrap = style({
   margin: '2rem',
   maxHeight: '100%',
   '@media': {
-    'screen and (max-width: 512px)': {
+    '(max-width: 512px)': {
       margin: '2rem auto',
     },
   },
@@ -42,7 +42,7 @@ export const window = style({
       color: '#eee',
       background: vars.color['cool-gray'][700],
     },
-    'screen and (max-width: 1625px)': {
+    '(max-width: 1625px)': {
       width: '95%',
     },
   },

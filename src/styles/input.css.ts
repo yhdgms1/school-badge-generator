@@ -29,7 +29,7 @@ export const input = style({
   },
 })
 
-export const container = style({
+export const input_container = style({
   width: '70%',
   margin: '.5625rem auto',
 })

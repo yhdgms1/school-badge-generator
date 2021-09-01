@@ -18,7 +18,7 @@ export const card = style({
     '(prefers-color-scheme: dark)': {
       background: vars.color['cool-gray'][800],
     },
-    'screen and (max-width: 1625px)': {
+    '(max-width: 1625px)': {
       width: '85%',
       height: '26rem',
     },

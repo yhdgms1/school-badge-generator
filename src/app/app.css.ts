@@ -13,7 +13,7 @@ export const aside = style({
   flexDirection: 'column',
   padding: '1rem 0',
   '@media': {
-    'screen and (max-width: 512px)': {
+    '(max-width: 512px)': {
       width: '100%',
       position: 'relative',
       margin: 'auto',
@@ -43,10 +43,10 @@ export const main = style({
     height: '2rem',
   },
   '@media': {
-    'screen and (max-width: 1150px)': {
+    '(max-width: 1150px)': {
       gridTemplateColumns: '1fr',
     },
-    'screen and (max-width: 512px)': {
+    '(max-width: 512px)': {
       width: '100%',
       position: 'relative',
       margin: 'auto',

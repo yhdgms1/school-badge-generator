@@ -1,8 +1,6 @@
 <script>
-import * as cardStyle from "./card.css"
-import * as selectStyle from "../styles/select.css"
-import * as inputStyle from "../styles/input.css"
-import * as buttonStyle from "../styles/button.css"
+import * as styles from './card.css.ts'
+import * as classes from '../styles'
 import clsx from "clsx"
 import { store } from "../data"
 
@@ -18,42 +16,42 @@ const remove = () => {
 
 </script>
 
-<div class={cardStyle.card}>
+<div class={styles.card}>
     {#if born}
-        <div class={inputStyle.container}>
-            <input :value={store.$.people[i - 1].name} type="text" class={inputStyle.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
+        <div class={classes.input_container}>
+            <input :value={store.$.people[i - 1].name} type="text" class={classes.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
         </div>
 
         {#if !store.$.global.grade}
-            <div class={inputStyle.container}>
-                <input :value={store.$.people[i - 1].grade} type="text" class={inputStyle.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
+            <div class={classes.input_container}>
+                <input :value={store.$.people[i - 1].grade} type="text" class={classes.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
             </div>
         {/if}
 
-        <div class={selectStyle.container}>
-            <label for="gender-select-{i}" class={selectStyle.label}>Выберите пол</label>
-            <select :value={store.$.people[i - 1].gender} title="Выберите пол" id="gender-select-{i}" class={selectStyle.select}>
+        <div class={classes.select_container}>
+            <label for="gender-select-{i}" class={classes.label}>Выберите пол</label>
+            <select :value={store.$.people[i - 1].gender} title="Выберите пол" id="gender-select-{i}" class={classes.select}>
                 <option value="male">Мужчина</option>
                 <option value="female">Женщина</option>
             </select>
         </div>
-        <div class={selectStyle.container}>
-            <label for="style-select-{i}" class={selectStyle.label}>Выберите стиль</label>
-            <select :value={store.$.people[i - 1].style} title="Выберите стиль" id="style-select-{i}" class={selectStyle.select}>
+        <div class={classes.select_container}>
+            <label for="style-select-{i}" class={classes.label}>Выберите стиль</label>
+            <select :value={store.$.people[i - 1].style} title="Выберите стиль" id="style-select-{i}" class={classes.select}>
                 <option value="default">По умолчанию</option>
                 <option value="satan">Сатанинский</option>
                 <option value="pony-rarity">С пони (Рарити)</option>
             </select>
         </div>
 
-        <button @click={remove} type="button" aria-label="Удалить" class={clsx(buttonStyle.button, buttonStyle.buttonClose)}>
+        <button @click={remove} type="button" aria-label="Удалить" class={clsx(classes.button, classes.buttonClose)}>
             <svg width="24" height="24">
                 <use href="#close-icon"/>
             </svg>
         </button>
 
     {:else}
-        <button aria-label="Добавить" type="button" class={cardStyle.add} @click={born = true}>
+        <button aria-label="Добавить" type="button" class={styles.add} @click={born = true}>
             <svg width="4.5rem" height="4.5rem">
                 <use href="#add-icon"/>
             </svg>

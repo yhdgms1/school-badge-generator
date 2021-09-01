@@ -1,6 +1,6 @@
 <script property>
 import { clickOutside } from "../lib/actions/clickOutside.js"
-import * as modalStyles from './modal.css'
+import * as styles from './modal.css'
 
 export let isOpen = false
 
@@ -32,24 +32,24 @@ const close = () => {
 
 <malina:portal>
   {#if isOpen}
-    <div class={modalStyles.bg}>
-      <div class={modalStyles.windowWrap}>
+    <div class={styles.bg}>
+      <div class={styles.windowWrap}>
         <div
-          class={modalStyles.window}
+          class={styles.window}
           role="dialog"
           aria-modal="true"
           *clickOutside
           @clickOutside:close
           #modalWindow
         >
-          <header class={modalStyles.header}>
-            <button type="button" aria-label="Закрыть модальное окно" @click:close class={modalStyles.close}>
+          <header class={styles.header}>
+            <button type="button" aria-label="Закрыть модальное окно" @click:close class={styles.close}>
               <svg width="1.9rem" height="1.9rem" fill="none" viewBox="0 0 24 24">
                 <use href="#close-icon"/>
               </svg>
             </button>
           </header>
-          <div class={modalStyles.content}>
+          <div class={styles.content}>
             <slot/>
           </div>
         </div>

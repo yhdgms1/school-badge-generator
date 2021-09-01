@@ -3,10 +3,7 @@ import Card from "../components/Card.xht"
 import Modal from "../components/Modal.xht"
 import clsx from "clsx"
 import * as styles from "./app.css"
-import * as selectStyle from "../styles/select.css"
-import * as inputStyle from "../styles/input.css"
-import * as buttonStyle from "../styles/button.css"
-import * as linkStyle from '../styles/link.css'
+import * as classes from '../styles'
 import { store } from "../data"
 import { createImage } from "../lib/createImage.ts"
 
@@ -25,22 +22,22 @@ const proceedToCreateAnImage = async () => {
 
 <Modal #modal>
     <p>Готово! Скачайте файл, нажав на ссылку:</p>
-    <a tabindex="1" class={linkStyle.link} href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
+    <a tabindex="1" class={classes.link} href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
 </Modal>
 
 <div class={styles.aside}>
-  <div class={selectStyle.container}>
-    <label for="font-select" class={selectStyle.label}>Выберите шрифт</label>
-    <select :value={store.$.global.font} title="Выберите шрифт" id="font-select" class={selectStyle.select}>
+  <div class={classes.select_container}>
+    <label for="font-select" class={classes.label}>Выберите шрифт</label>
+    <select :value={store.$.global.font} title="Выберите шрифт" id="font-select" class={classes.select}>
       <option value="arial">Arial</option>
       <option value="intro">Intro</option>
     </select>
   </div>
-  <div class={inputStyle.container}>
-    <input :value={store.$.global.grade} type="text" class={inputStyle.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
+  <div class={classes.input_container}>
+    <input :value={store.$.global.grade} type="text" class={classes.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
   </div>
-  <div class={inputStyle.container}>
-    <button @click:proceedToCreateAnImage type="button" class={clsx(buttonStyle.button, buttonStyle.buttonBlue)}>Создать</button>
+  <div class={classes.input_container}>
+    <button @click:proceedToCreateAnImage type="button" class={clsx(classes.button, classes.buttonBlue)}>Создать</button>
   </div>
 </div>
 <main class={styles.main}>
