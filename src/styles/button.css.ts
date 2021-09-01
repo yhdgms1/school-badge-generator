@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css'
 
 export const button = style({
   borderRadius: '.375rem',
-  transition: 'all 150ms ease-in-out',
   cursor: 'pointer',
   height: '2.875rem',
   width: '100%',
