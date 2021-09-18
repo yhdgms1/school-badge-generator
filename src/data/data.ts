@@ -9,7 +9,14 @@ interface People {
   name: string
   grade: string
   gender?: 'male' | 'female'
-  style?: 'default' | 'satan' | 'pony-rarity' | 'pony-fluttershy' | 'pony-rainbow-dash' | 'pony-sparkle' | 'pony-applejack'
+  style?:
+    | 'default'
+    | 'satan'
+    | 'pony-rarity'
+    | 'pony-fluttershy'
+    | 'pony-rainbow-dash'
+    | 'pony-sparkle'
+    | 'pony-applejack'
 }
 
 export interface Data {

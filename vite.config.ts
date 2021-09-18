@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { viteSingleFile } from 'vite-plugin-singlefile'
 import { minifyHtml } from 'vite-plugin-html'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
-import { default as malinaPlugin } from 'malinajs/malina-rollup'
+import { vitePlugin as malinaPlugin } from 'malinajs-unplugin'
 
 export default defineConfig(({ mode }) => {
   const DEV = mode === 'development'
@@ -10,8 +10,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       malinaPlugin({
-        extension: ['ma', 'xht'],
-        displayVersion: false,
+        debugLabel: DEV,
       }),
       vanillaExtractPlugin(),
       !DEV && viteSingleFile(),
