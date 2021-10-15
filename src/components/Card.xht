@@ -1,12 +1,12 @@
 <script>
 import * as styles from './card.css.ts'
 import * as classes from '../styles'
-import clsx from "clsx"
 import { store } from "../data"
 
 export let i
 
 let born = i === 1
+let shouldFocus = false
 
 const remove = () => {
   store.$.people[i - 1] = { name: "", grade: "", gender: "male", style: "default" }
@@ -19,7 +19,7 @@ const remove = () => {
 <div class={styles.card}>
     {#if born}
         <div class={classes.input_container}>
-            <input :value={store.$.people[i - 1].name} type="text" class={classes.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
+            <input *{shouldFocus && $element.focus()} :value={store.$.people[i - 1].name} type="text" class={classes.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
         </div>
 
         {#if !store.$.global.grade}
@@ -48,18 +48,18 @@ const remove = () => {
             </select>
         </div>
 
-        <button @click={remove} type="button" aria-label="Удалить" class={clsx(classes.button, classes.buttonClose)}>
+        <button @click={remove} type="button" aria-label="Удалить" class={classes.button + ' ' + classes.buttonClose}>
             <svg width="24" height="24">
                 <use href="#close-icon"/>
             </svg>
         </button>
 
     {:else}
-        <button aria-label="Добавить" type="button" class={styles.add} @click={born = true}>
-            <svg width="4.5rem" height="4.5rem">
+        <button type="button" class={styles.add} @click={born = true; shouldFocus = true}>
+            <svg aria-hidden="true" width="4.5rem" height="4.5rem">
                 <use href="#add-icon"/>
             </svg>
+            <span>Добавить</span>
         </button>
-        <p aria-hidden="true">Добавить</p>
     {/if}
 </div>

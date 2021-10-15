@@ -1,7 +1,6 @@
 <script>
 import Card from "../components/Card.xht"
 import Modal from "../components/Modal.xht"
-import clsx from "clsx"
 import * as styles from "./app.css"
 import * as classes from '../styles'
 import { store } from "../data"
@@ -37,7 +36,7 @@ const proceedToCreateAnImage = async () => {
     <input :value={store.$.global.grade} type="text" class={classes.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
   </div>
   <div class={classes.input_container}>
-    <button @click:proceedToCreateAnImage type="button" class={clsx(classes.button, classes.buttonBlue)}>Создать</button>
+    <button @click:proceedToCreateAnImage type="button" class={classes.button + ' ' + classes.buttonBlue}>Создать</button>
   </div>
 </div>
 <main class={styles.main}>

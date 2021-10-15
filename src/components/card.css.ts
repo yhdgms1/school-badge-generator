@@ -37,6 +37,8 @@ export const add = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  flexDirection: 'column',
+  fontSize: '100%',
   '@media': {
     '(prefers-color-scheme: dark)': {
       color: '#eee',
