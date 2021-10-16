@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       malinaPlugin({
         debugLabel: DEV,
-        hideLabel: !DEV
+        hideLabel: !DEV,
       }),
       vanillaExtractPlugin(),
       !DEV && viteSingleFile(),

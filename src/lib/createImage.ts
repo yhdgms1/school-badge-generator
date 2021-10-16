@@ -32,14 +32,13 @@ export const createImage = async (data: Data) => {
   ctx.fillStyle = '#fff'
   ctx.fillRect(0, 0, 2480, 3508)
 
-  //@ts-ignore
   const font = new FontFace(
     data.global.font,
     `url('/assets/fonts/${data.global.font}.woff2')`
   )
 
   await font.load()
-  //@ts-ignore
+
   document.fonts.add(font)
 
   for (let i in data.people) {
@@ -53,6 +52,9 @@ export const createImage = async (data: Data) => {
     const cardPosition = utils.getCardPosition(Number(i))
     // 'satan' style has a black background so we need a white text
     const textColor = card.style === 'satan' ? '#fff' : '#000'
+    // 'default' style has no images so we need to center a text
+    const textMargin =
+      card.style === 'default' ? utils.Margin.Vertical * 1.5 : 0
 
     //Draw border
     ctx.fillStyle = '#010203'
@@ -125,7 +127,11 @@ export const createImage = async (data: Data) => {
 
     const textMargins = utils.getTextMargins(Number(i))
 
-    ctx.fillText(headerText, textMargins.x - headerTextWidth / 2, textMargins.y)
+    ctx.fillText(
+      headerText,
+      textMargins.x - headerTextWidth / 2,
+      textMargins.y + textMargin
+    )
 
     /*
      * Draw name and surname
@@ -143,7 +149,7 @@ export const createImage = async (data: Data) => {
     ctx.fillText(
       card.name,
       textMargins.x - nameWidth / 2,
-      textMargins.y + utils.Margin.Vertical * 2 - 20
+      textMargins.y + textMargin + utils.Margin.Vertical * 2 - 20
     )
 
     /*
@@ -157,7 +163,7 @@ export const createImage = async (data: Data) => {
     ctx.fillText(
       gradeText,
       textMargins.x - gradeWidth / 2,
-      textMargins.y + utils.Margin.Vertical * 4 - 40
+      textMargins.y + textMargin + utils.Margin.Vertical * 4 - 40
     )
   }
 
