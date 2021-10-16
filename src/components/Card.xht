@@ -6,7 +6,6 @@ import { store } from "../data"
 export let i
 
 let born = i === 1
-let shouldFocus = false
 
 const remove = () => {
   store.$.people[i - 1] = { name: "", grade: "", gender: "male", style: "default" }
@@ -19,7 +18,7 @@ const remove = () => {
 <div class={styles.card}>
     {#if born}
         <div class={classes.input_container}>
-            <input *{shouldFocus && $element.focus()} :value={store.$.people[i - 1].name} type="text" class={classes.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
+            <input :value={store.$.people[i - 1].name} type="text" class={classes.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
         </div>
 
         {#if !store.$.global.grade}
@@ -55,7 +54,7 @@ const remove = () => {
         </button>
 
     {:else}
-        <button type="button" class={styles.add} @click={born = true; shouldFocus = true}>
+        <button type="button" class={styles.add} @click={born = true}>
             <svg aria-hidden="true" width="4.5rem" height="4.5rem">
                 <use href="#add-icon"/>
             </svg>
