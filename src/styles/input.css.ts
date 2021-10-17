@@ -7,7 +7,8 @@ export const input = style({
   padding: '0 1rem',
   position: 'relative',
   height: '2.625rem',
-  width: '100%',
+  width: '70%',
+  marginBottom: '.5625rem',
   fontSize: '1em',
   ':hover': {
     backgroundColor: vars.color['cool-gray'][100],
@@ -27,9 +28,4 @@ export const input = style({
       },
     },
   },
-})
-
-export const input_container = style({
-  width: '70%',
-  margin: '.5625rem auto',
 })

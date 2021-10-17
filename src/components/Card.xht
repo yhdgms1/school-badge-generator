@@ -16,49 +16,42 @@ const remove = () => {
 </script>
 
 <div class={styles.card}>
-    {#if born}
-        <div class={classes.input_container}>
-            <input :value={store.$.people[i - 1].name} type="text" class={classes.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
-        </div>
+  {#if born}
+    <input :value={store.$.people[i - 1].name} type="text" class={classes.input} maxlength="42" spellcheck="false" placeholder="Введите имя и фамилию">
 
-        {#if !store.$.global.grade}
-            <div class={classes.input_container}>
-                <input :value={store.$.people[i - 1].grade} type="text" class={classes.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
-            </div>
-        {/if}
-
-        <div class={classes.select_container}>
-            <label for="gender-select-{i}" class={classes.label}>Выберите пол</label>
-            <select :value={store.$.people[i - 1].gender} title="Выберите пол" id="gender-select-{i}" class={classes.select}>
-                <option value="male">Мужчина</option>
-                <option value="female">Женщина</option>
-            </select>
-        </div>
-        <div class={classes.select_container}>
-            <label for="style-select-{i}" class={classes.label}>Выберите стиль</label>
-            <select :value={store.$.people[i - 1].style} title="Выберите стиль" id="style-select-{i}" class={classes.select}>
-                <option value="default">По умолчанию</option>
-                <option value="satan">Сатанинский</option>
-                <option value="pony-rarity">С пони (Рарити)</option>
-                <option value="pony-fluttershy">С пони (Флаттершай)</option>
-                <option value="pony-rainbow-dash">С пони (Радуга Дэш)</option>
-                <option value="pony-sparkle">С пони (Искорка)</option>
-                <option value="pony-applejack">С пони (Эплджек)</option>
-            </select>
-        </div>
-
-        <button @click={remove} type="button" aria-label="Удалить" class={classes.button + ' ' + classes.buttonClose}>
-            <svg width="24" height="24">
-                <use href="#close-icon"/>
-            </svg>
-        </button>
-
-    {:else}
-        <button type="button" class={styles.add} @click={born = true}>
-            <svg aria-hidden="true" width="4.5rem" height="4.5rem">
-                <use href="#add-icon"/>
-            </svg>
-            <span>Добавить</span>
-        </button>
+    {#if !store.$.global.grade}
+      <input :value={store.$.people[i - 1].grade} type="text" class={classes.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
     {/if}
+
+    <label class={classes.label}>Выберите пол
+      <select :value={store.$.people[i - 1].gender} title="Выберите пол" class={classes.select}>
+        <option value="male">Мужчина</option>
+        <option value="female">Женщина</option>
+      </select>
+    </label>
+    <label class={classes.label}>Выберите стиль
+      <select :value={store.$.people[i - 1].style} title="Выберите стиль" class={classes.select}>
+        <option value="default">По умолчанию</option>
+        <option value="satan">Сатанинский</option>
+        <option value="pony-rarity">С пони (Рарити)</option>
+        <option value="pony-fluttershy">С пони (Флаттершай)</option>
+        <option value="pony-rainbow-dash">С пони (Радуга Дэш)</option>
+        <option value="pony-sparkle">С пони (Искорка)</option>
+        <option value="pony-applejack">С пони (Эплджек)</option>
+      </select>
+    </label>
+
+    <button @click={remove} type="button" aria-label="Удалить" class={classes.button + ' ' + classes.buttonClose}>
+      <svg width="24" height="24">
+        <use href="#close-icon"/>
+      </svg>
+    </button>
+  {:else}
+    <button type="button" class={styles.add} @click={born = true}>
+      <svg aria-hidden="true" width="4.5rem" height="4.5rem">
+        <use href="#add-icon"/>
+      </svg>
+      <span>Добавить</span>
+    </button>
+  {/if}
 </div>

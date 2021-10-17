@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
       malinaPlugin({
         debugLabel: DEV,
         hideLabel: !DEV,
+        immutable: true,
       }),
       vanillaExtractPlugin(),
       !DEV && viteSingleFile(),
@@ -27,6 +28,10 @@ export default defineConfig(({ mode }) => {
           manualChunks: () => 'everything.js',
         },
       },
+      minify: 'terser'
+    },
+    esbuild: {
+      charset: 'utf8',
     },
   }
 })

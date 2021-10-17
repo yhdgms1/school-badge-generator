@@ -4,6 +4,7 @@ import { vars } from './theme.css'
 export const select = style({
   border: `1px solid ${vars.color['cool-gray'][200]}`,
   borderRadius: '.188rem',
+  marginTop: '.2812rem',
   padding: '0 1rem',
   position: 'relative',
   height: '2.625rem',
@@ -45,14 +46,6 @@ export const select = style({
 })
 
 export const label = style({
-  marginBottom: '.313rem',
-})
-
-export const select_container = style({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'center',
   width: '70%',
-  margin: '.5625rem auto',
+  marginBottom: '.5625rem'
 })

@@ -4,12 +4,12 @@ export const button = style({
   borderRadius: '.375rem',
   cursor: 'pointer',
   height: '2.875rem',
-  width: '100%',
   border: 'none',
   fontSize: '.875em',
 })
 
 export const buttonBlue = style({
+  width: '70%',
   color: '#fff',
   background: '#06f',
   ':hover': {

@@ -25,19 +25,14 @@ const proceedToCreateAnImage = async () => {
 </Modal>
 
 <div class={styles.aside}>
-  <div class={classes.select_container}>
-    <label for="font-select" class={classes.label}>Выберите шрифт</label>
-    <select :value={store.$.global.font} title="Выберите шрифт" id="font-select" class={classes.select}>
+  <label class={classes.label}>Выберите шрифт
+    <select :value={store.$.global.font} title="Выберите шрифт" class={classes.select}>
       <option value="arial">Arial</option>
       <option value="intro">Intro</option>
     </select>
-  </div>
-  <div class={classes.input_container}>
-    <input :value={store.$.global.grade} type="text" class={classes.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
-  </div>
-  <div class={classes.input_container}>
-    <button @click:proceedToCreateAnImage type="button" class={classes.button + ' ' + classes.buttonBlue}>Создать</button>
-  </div>
+  </label>
+  <input :value={store.$.global.grade} type="text" class={classes.input} maxlength="4" spellcheck="false" placeholder="Введите номер и букву класса">
+  <button @click:proceedToCreateAnImage type="button" class={classes.button + ' ' + classes.buttonBlue}>Создать</button>
 </div>
 <main class={styles.main}>
   {#each 10 as i}
