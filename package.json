@@ -19,7 +19,7 @@
     "vite-plugin-singlefile": "^0.5.1"
   },
   "dependencies": {
-    "malinajs": "^0.6.45",
+    "malinajs": "^0.6.46",
     "storxy": "^0.1.4"
   }
 }
