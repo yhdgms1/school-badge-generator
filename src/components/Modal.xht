@@ -1,5 +1,5 @@
 <script property>
-import { clickOutside } from "../lib/actions"
+import { clickOutside } from "../lib/actions" //!no-autosubscribe
 import * as styles from './modal.css' //!no-autosubscribe
 
 export let isOpen = false
@@ -38,8 +38,7 @@ const close = () => {
           class={styles.window}
           role="dialog"
           aria-modal="true"
-          *clickOutside
-          @clickOutside:close
+          *clickOutside={close}
           #modalWindow
         >
           <header class={styles.header}>

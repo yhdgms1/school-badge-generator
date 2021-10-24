@@ -1,9 +1,9 @@
-export const clickOutside = (node: HTMLElement) => {
-  const handleClick = (event: MouseEvent) => {
-    if (node && !node.contains(event.target) && !event.defaultPrevented) {
-      node.dispatchEvent(new CustomEvent('clickOutside', node))
-    }
-  }
+export const clickOutside = (node: HTMLElement, handler: () => void) => {
+  const handleClick = (event: MouseEvent) =>
+    node &&
+    !node.contains(event.target as HTMLElement) &&
+    !event.defaultPrevented &&
+    handler()
 
   document.addEventListener('click', handleClick, true)
 

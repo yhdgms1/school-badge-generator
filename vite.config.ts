@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
           manualChunks: () => 'everything.js',
         },
       },
-      minify: 'terser'
+      minify: 'terser',
     },
     esbuild: {
       charset: 'utf8',

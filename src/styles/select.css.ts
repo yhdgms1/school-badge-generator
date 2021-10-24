@@ -47,5 +47,5 @@ export const select = style({
 
 export const label = style({
   width: '70%',
-  marginBottom: '.5625rem'
+  marginBottom: '.5625rem',
 })
