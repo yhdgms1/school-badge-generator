@@ -43,10 +43,10 @@ export const label = style({
   '::after': {
     content: '',
     position: 'absolute',
-    top: '1.85rem',
+    top: 'calc(100% - 2.2812rem)',
+    bottom: 0,
     right: '.5rem',
     width: '2rem',
-    height: '2rem',
     pointerEvents: 'none',
     backgroundColor: 'currentColor',
     WebkitMask: `${vars.icons.arrow_down} no-repeat`,
