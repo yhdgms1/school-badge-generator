@@ -11,7 +11,6 @@ export default defineConfig(({ mode }) => {
     plugins: [
       malinaPlugin({
         debugLabel: DEV,
-        hideLabel: !DEV,
         immutable: true,
       }),
       vanillaExtractPlugin(),
@@ -19,11 +18,10 @@ export default defineConfig(({ mode }) => {
       !DEV && minifyHtml(),
     ],
     build: {
-      target: ['chrome64'],
-      polyfillDynamicImport: false,
+      target: ['es2018'],
+      polyfillModulePreload: false,
       cssCodeSplit: false,
       rollupOptions: {
-        inlineDynamicImports: true,
         output: {
           manualChunks: () => 'everything.js',
         },

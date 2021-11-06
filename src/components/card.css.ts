@@ -23,9 +23,6 @@ export const card = style({
       height: '26rem',
     },
   },
-  ':hover': {
-    boxShadow: `inset rgba(0, 0, 0, 0.096) 0 0 1px 2px`,
-  },
 })
 
 export const add = style({

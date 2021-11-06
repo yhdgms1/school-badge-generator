@@ -13,7 +13,7 @@ export const aside = style({
   flexDirection: 'column',
   padding: '1rem 0',
   '@media': {
-    '(max-width: 512px)': {
+    '(max-width: 625px)': {
       width: '100%',
       position: 'relative',
       margin: 'auto',
@@ -37,16 +37,13 @@ export const main = style({
   gridTemplateColumns: `repeat(2, 1fr)`,
   gridRowGap: '1rem',
   rowGap: '1rem',
-  paddingTop: '2rem',
-  '::after': {
-    content: `''`,
-    height: '2rem',
-  },
+  padding: '2rem 0',
   '@media': {
     '(max-width: 1150px)': {
       gridTemplateColumns: '1fr',
     },
-    '(max-width: 512px)': {
+    '(max-width: 625px)': {
+      minHeight: '100vh',
       width: '100%',
       position: 'relative',
       margin: 'auto',

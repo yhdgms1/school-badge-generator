@@ -7,8 +7,6 @@ export const vars = createGlobalTheme(':root', {
       50: '#f9fafb',
       100: '#f3f4f6',
       200: '#e5e7eb',
-      300: '#d1d5db',
-      400: '#9ca3af',
       500: '#6b7280',
       600: '#4b5563',
       700: '#374151',
@@ -18,6 +16,9 @@ export const vars = createGlobalTheme(':root', {
   },
   font: {
     sans: `ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
+  },
+  icons: {
+    arrow_down: `url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M15.25 10.75L12 14.25L8.75 10.75'%3E%3C/path%3E%3C/svg%3E")`,
   },
 })
 

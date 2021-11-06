@@ -32,15 +32,6 @@ export const select = style({
     '(-webkit-appearance: none)': {
       WebkitAppearance: 'none',
       appearance: 'none',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: `right .2rem top 50%, 0 0`,
-      backgroundSize: `2rem auto, 100%`,
-      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M15.25 10.75L12 14.25L8.75 10.75'%3E%3C/path%3E%3C/svg%3E%0A")`,
-      '@media': {
-        '(prefers-color-scheme: dark)': {
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23eee' stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M15.25 10.75L12 14.25L8.75 10.75'%3E%3C/path%3E%3C/svg%3E%0A")`,
-        },
-      },
     },
   },
 })
@@ -48,4 +39,19 @@ export const select = style({
 export const label = style({
   width: '70%',
   marginBottom: '.5625rem',
+  position: 'relative',
+  '::after': {
+    content: '',
+    position: 'absolute',
+    top: 'calc(100% - 2.2812rem)',
+    bottom: 0,
+    right: '.5rem',
+    width: '2rem',
+    pointerEvents: 'none',
+    backgroundColor: 'currentColor',
+    WebkitMask: `${vars.icons.arrow_down} no-repeat`,
+    WebkitMaskSize: '2rem 2rem',
+    mask: `${vars.icons.arrow_down} no-repeat`,
+    maskSize: '2rem 2rem',
+  },
 })
