@@ -1,22 +1,30 @@
-import { style } from '@vanilla-extract/css'
+import { style, globalStyle } from '@vanilla-extract/css'
 import { vars } from '../styles/theme.css'
 
+globalStyle('body', {
+  display: 'grid',
+  gridTemplateColumns: '22.7rem 1fr',
+  '@media': {
+    '(max-width: 625px)': {
+      display: 'block',
+    },
+  },
+})
+
 export const aside = style({
-  width: '22.7rem',
-  position: 'absolute',
+  height: '100vh',
+  position: 'sticky',
   top: 0,
-  left: 0,
-  bottom: 0,
+  alignSelf: 'start',
   display: 'flex',
-  justifyContent: 'start',
   alignItems: 'center',
   flexDirection: 'column',
   padding: '1rem 0',
   '@media': {
     '(max-width: 625px)': {
-      width: '100%',
       position: 'relative',
       margin: 'auto',
+      height: 'auto',
     },
     '(prefers-color-scheme: dark)': {
       background: vars.color['cool-gray'][800],
@@ -26,28 +34,16 @@ export const aside = style({
 })
 
 export const main = style({
-  width: `calc(100vw - 22.7rem)`,
   background: vars.color['cool-gray'][200],
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  overflow: 'auto',
   display: 'grid',
   gridTemplateColumns: `repeat(2, 1fr)`,
   gridRowGap: '1rem',
   rowGap: '1rem',
   padding: '2rem 0',
+  minHeight: '100vh',
   '@media': {
     '(max-width: 1150px)': {
       gridTemplateColumns: '1fr',
-    },
-    '(max-width: 625px)': {
-      minHeight: '100vh',
-      width: '100%',
-      position: 'relative',
-      margin: 'auto',
-      overflow: 'auto',
     },
     '(prefers-color-scheme: dark)': {
       background: vars.color['cool-gray'][900],

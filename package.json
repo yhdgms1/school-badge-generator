@@ -10,16 +10,16 @@
   },
   "devDependencies": {
     "@vanilla-extract/css": "^1.6.3",
-    "@vanilla-extract/vite-plugin": "^3.0.0",
-    "malinajs-unplugin": "^0.0.9",
+    "@vanilla-extract/vite-plugin": "^3.0.1",
+    "malinajs-unplugin": "^0.0.12",
     "prettier": "^2.4.1",
     "typescript": "^4.4.4",
-    "vite": "^2.6.13",
+    "vite": "^2.6.14",
     "vite-plugin-html": "^2.1.1",
     "vite-plugin-singlefile": "^0.5.1"
   },
   "dependencies": {
-    "malinajs": "^0.6.49",
-    "storxy": "^0.1.6"
+    "malinajs": "^0.6.51",
+    "storxy": "^0.1.7"
   }
 }
