@@ -1,8 +1,10 @@
-<script property>
+<script>
 import { clickOutside } from "../lib/actions" //!no-autosubscribe
 import * as styles from './modal.css' //!no-autosubscribe
+import * as classes from '../styles' //!no-autosubscribe
 
 export let isOpen = false
+export let href = ''
 
 let modalWindow
 
@@ -30,29 +32,28 @@ const close = () => {
 
 <malina:window @keydown={handleKeydown}/>
 
-<malina:portal>
-  {#if isOpen}
-    <div class={styles.bg}>
-      <div class={styles.windowWrap}>
-        <div
-          class={styles.window}
-          role="dialog"
-          aria-modal="true"
-          {* $runtime.bindAction($cd, $element, clickOutside, () => [close])}
-          #modalWindow
-        >
-          <header class={styles.header}>
-            <button type="button" aria-label="Закрыть модальное окно" @click:close class={styles.close}>
-              <svg width="1.9rem" height="1.9rem" fill="none" viewBox="0 0 24 24">
-                <use href="#close-icon"/>
-              </svg>
-            </button>
-          </header>
-          <div class={styles.content}>
-            <slot/>
-          </div>
+{#if isOpen}
+  <div class={styles.bg}>
+    <div class={styles.windowWrap}>
+      <div
+        class={styles.window}
+        role="dialog"
+        aria-modal="true"
+        {* $runtime.bindAction($cd, $element, clickOutside, () => [close])}
+        #modalWindow
+      >
+        <header class={styles.header}>
+          <button type="button" aria-label="Закрыть модальное окно" @click:close class={styles.close}>
+            <svg width="1.9rem" height="1.9rem" fill="none" viewBox="0 0 24 24">
+              <use href="#close-icon"/>
+            </svg>
+          </button>
+        </header>
+        <div class={styles.content}>
+          <p>Готово! Скачайте файл, нажав на ссылку:</p>
+          <a tabindex="1" class={classes.link} href={href} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
         </div>
       </div>
     </div>
-  {/if}
-</malina:portal>
+  </div>
+{/if}

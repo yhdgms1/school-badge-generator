@@ -4,25 +4,21 @@ import Modal from "../components/Modal.xht"
 import * as styles from "./app.css" //!no-autosubscribe
 import * as classes from '../styles' //!no-autosubscribe
 import { store } from "../data"
-import { createImage } from "../lib/createImage.ts"
+import { createImage } from "../lib/createImage.ts" //!no-autosubscribe
 
 let result = ""
-let modal
+let isOpen = false
 
 const proceedToCreateAnImage = async () => {
   if (result) URL.revokeObjectURL(result)
 
   result = await createImage(store.$)
-
-  modal.isOpen = true
+  isOpen = true
 };
 
 </script>
 
-<Modal #modal>
-    <p>Готово! Скачайте файл, нажав на ссылку:</p>
-    <a tabindex="1" class={classes.link} href={result} download="image-{Date.now().toString(36).slice(1)}.png">Скачать</a>
-</Modal>
+<Modal {isOpen} href={result} />
 
 <div class={styles.aside}>
   <label class={classes.label}>Выберите шрифт

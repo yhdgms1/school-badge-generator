@@ -1,4 +1,3 @@
-//@ts-ignore
 import App from './app/App.xht'
 
-App(document.body)
+document.body.appendChild(App().$dom)
