@@ -112,7 +112,7 @@ export const createImage = async (data: Data) => {
         ctx.drawImage(image, 0, 0)
 
         ctx.restore()
-      } catch {} //oof
+      } catch {}
     }
 
     /*
@@ -141,9 +141,9 @@ export const createImage = async (data: Data) => {
     let nameWidth = ctx.measureText(card.name).width
     //If long name
     if (nameWidth >= utils.Card.Width - utils.Padding * 4) {
-      ctx.font = `500 ${
+      let fontSize =
         ((utils.Card.Width - utils.Padding * 4) / card.name.length) * 1.3
-      }px ${data.global.font}`
+      ctx.font = `500 ${fontSize}px ${data.global.font}`
       nameWidth = ctx.measureText(card.name).width
     }
     ctx.fillText(
