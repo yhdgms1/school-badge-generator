@@ -74,3 +74,9 @@ export const getMediaMargins = (i: number) => {
     },
   }
 }
+
+/**
+ * Scales number by 2. Needed to fix an issue when image looks pixelated when printed
+ * @todo
+ */
+export const scale = (n: number) => n * 2;

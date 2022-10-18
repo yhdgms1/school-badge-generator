@@ -1,7 +1,7 @@
 {
   "version": "1.0.2",
   "name": "school-slave-generator",
-  "description": "Генератор карточек для школьного дежурства",
+  "description": "Генератор бейджей для школьного дежурства",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,13 +11,13 @@
   "devDependencies": {
     "@vanilla-extract/css": "^1.6.8",
     "@vanilla-extract/vite-plugin": "^3.1.2",
-    "malinajs-unplugin": "^0.0.18",
+    "malinajs-unplugin": "^0.1.0",
     "prettier": "^2.4.1",
     "typescript": "^4.4.4",
     "vite": "^2.8.6"
   },
   "dependencies": {
-    "malinajs": "0.7.0-a2",
+    "malinajs": "0.7.0-a5",
     "storxy": "^0.1.9"
   }
 }
