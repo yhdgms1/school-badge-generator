@@ -39,7 +39,7 @@ const close = () => {
         class={styles.window}
         role="dialog"
         aria-modal="true"
-        {* $runtime.bindAction($cd, $element, clickOutside, () => [close])}
+        *clickOutside={close}
         #modalWindow
       >
         <header class={styles.header}>
